@@ -1,0 +1,10 @@
+---
+version: "3.6"
+services:
+  blender:
+    image: nvidia/cuda:11.0.3-base-ubuntu20.04
+    container_name: cuda-test
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0
+    runtime: nvidia
+    restart: unless-stopped
