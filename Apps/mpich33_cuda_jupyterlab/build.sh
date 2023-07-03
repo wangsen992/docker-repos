@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 # rebuild the dependencies first
 # This is a three stage build process. The first is for interactive setup
 DOCKER_ACCOUNT=wangsen992
 DOCKER_DIR=/mnt/d/docker-repos
-BASE_DEV_IMAGE=ubuntu22_dev
-DEST_DEV_IMAGE=theta
-TARGET_IMAGE=theta_helloworld
+BASE_DEV_IMAGE=ubuntu22_cuda_dev
+DEST_DEV_IMAGE=mpich33_cuda
+TARGET_IMAGE=mpich33_cuda_jupyterlab
 
 echo $DOCKER_DIR
 

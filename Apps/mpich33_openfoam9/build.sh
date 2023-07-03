@@ -5,8 +5,8 @@
 DOCKER_ACCOUNT=wangsen992
 DOCKER_DIR=/mnt/d/docker-repos
 BASE_DEV_IMAGE=ubuntu22_dev
-DEST_DEV_IMAGE=theta
-TARGET_IMAGE=theta_openfoam9
+DEST_DEV_IMAGE=mpich33
+TARGET_IMAGE=mpich33_openfoam9
 
 echo $DOCKER_DIR
 

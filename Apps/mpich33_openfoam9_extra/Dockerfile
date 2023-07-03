@@ -1,5 +1,5 @@
 # This is only to build extension packages to existing theta_openfoam9:build
-FROM wangsen992/theta_openfoam9:build
+FROM wangsen992/mpich33_openfoam9:build
 
 SHELL ["/bin/bash", "-c"]
 USER wangsen992

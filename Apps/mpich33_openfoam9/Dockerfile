@@ -1,4 +1,4 @@
-FROM wangsen992/theta:build
+FROM wangsen992/mpich33:build
 
 SHELL ["/bin/bash", "-c"]
 USER wangsen992

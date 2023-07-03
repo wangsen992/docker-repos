@@ -1,4 +1,4 @@
-FROM wangsen992/ubuntu22_dev:build
+FROM wangsen992/ubuntu22_cuda_dev:build
 
 # NOTE: in ALCF, BINDINGS for container is done with
 # BINDINGS="-B /opt -B /etc/alternatives"
@@ -20,9 +20,9 @@ ENV MPICH_MAKE_OPTIONS="-j 4"
 # Needed for configuration for f77
 # Reference: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=91731
 ENV FFLAGS="-fallow-argument-mismatch"
-RUN wget http://www.mpich.org/static/downloads/${MPICH_VERSION}/mpich-${MPICH_VERSION}.tar.gz \
-      && tar xfz mpich-${MPICH_VERSION}.tar.gz  --strip-components=1 \
-			&& ./configure ${MPICH_CONFIGURE_OPTIONS} \
-      && make install ${MPICH_MAKE_OPTIONS}
+RUN sudo wget http://www.mpich.org/static/downloads/${MPICH_VERSION}/mpich-${MPICH_VERSION}.tar.gz \
+      && sudo tar xfz mpich-${MPICH_VERSION}.tar.gz  --strip-components=1 \
+			&& sudo -E ./configure ${MPICH_CONFIGURE_OPTIONS} \
+      && sudo -E make install ${MPICH_MAKE_OPTIONS}
 ENV PATH $PATH:/mpich/install/bin
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/mpich/install/lib
