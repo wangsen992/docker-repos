@@ -22,5 +22,7 @@ echo Building $DOCKER_ACCOUNT/$TARGET_IMAGE:latest
 echo Removing previously built image and cache
 docker image rm $DOCKER_ACCOUNT/$TARGET_IMAGE:latest
 docker builder prune -f
-docker build -t $DOCKER_ACCOUNT/$TARGET_IMAGE:latest \
+docker build \
+			--no-cache \
+			-t $DOCKER_ACCOUNT/$TARGET_IMAGE:latest \
 			$DOCKER_DIR/Apps/$TARGET_IMAGE -f $DOCKER_DIR/Apps/$TARGET_IMAGE/Dockerfile
