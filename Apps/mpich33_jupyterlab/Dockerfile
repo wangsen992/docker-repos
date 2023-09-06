@@ -5,9 +5,10 @@ USER wangsen992
 EXPOSE 8888
 
 WORKDIR /app
-RUN sudo chmod 775 /app
+RUN sudo chmod -R 777 /app
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-		&& bash Miniconda3-latest-Linux-x86_64.sh -b -p /app/miniconda3
+		&& bash Miniconda3-latest-Linux-x86_64.sh -b -p /app/miniconda3 \
+		&& sudo chmod -R 775 /app/miniconda3
 ENV PATH=/app/miniconda3/bin:$PATH
 RUN conda init bash && . /home/wangsen992/.bashrc
 RUN conda install -c conda-forge -y jupyterlab=3.6.5 \
