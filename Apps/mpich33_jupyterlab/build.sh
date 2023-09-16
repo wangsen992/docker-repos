@@ -4,9 +4,9 @@
 # This is a three stage build process. The first is for interactive setup
 DOCKER_ACCOUNT=wangsen992
 DOCKER_DIR=${0%/*}/../..
-BASE_DEV_IMAGE=ubuntu22_cuda_dev
-DEST_DEV_IMAGE=mpich33_cuda
-TARGET_IMAGE=mpich33_cuda_jupyterlab
+BASE_DEV_IMAGE=ubuntu22_dev
+DEST_DEV_IMAGE=mpich33
+TARGET_IMAGE=mpich33_jupyterlab
 
 echo $DOCKER_DIR
 
@@ -19,6 +19,5 @@ docker build -t $DOCKER_ACCOUNT/$DEST_DEV_IMAGE:build \
 			$DOCKER_DIR/CompEnvs/$DEST_DEV_IMAGE -f $DOCKER_DIR/CompEnvs/$DEST_DEV_IMAGE/Dockerfile
 
 echo Building $DOCKER_ACCOUNT/$TARGET_IMAGE:latest
-docker build --no-cache \
-			-t $DOCKER_ACCOUNT/$TARGET_IMAGE:latest \
+docker build -t $DOCKER_ACCOUNT/$TARGET_IMAGE:latest \
 			$DOCKER_DIR/Apps/$TARGET_IMAGE -f $DOCKER_DIR/Apps/$TARGET_IMAGE/Dockerfile

@@ -14,6 +14,7 @@ services:
     runtime: nvidia
     volumes:
       - /mnt/d/docker-repos/Apps/mpich33_jupyterlab/work:/work
+      - /mnt/d:/mnt/d
     ports:
       - 8888:8888
     restart: unless-stopped

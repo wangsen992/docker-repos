@@ -1,4 +1,8 @@
-FROM nvidia/cuda:12.0.0-devel-ubuntu22.04
+# Pull directly from tensorflow as a quick-fix to enable gpu device
+# FROM nvidia/cuda:11.8.0-base-ubuntu22.04
+FROM tensorflow/tensorflow:nightly-gpu-jupyter
+
+# Adapted from tensorflow 
 
 # Run everything as root as this point
 RUN apt-get update -y \
