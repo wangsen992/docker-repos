@@ -1,0 +1,24 @@
+---
+version: "3.6"
+services:
+  openfoam9_layering:
+    build:
+      context: /mnt/d/docker-repos/
+      dockerfile: OS/ubuntu/Dockerfile
+      args:
+        - BASE=ubuntu:devel
+        - DI_RESOURCES=Resources
+        - IMAGE_RESOURCES=/app/Resources
+        - USER=wangsen992
+        - INSTALL_APP_SCRIPT=setup_scripts/layering-setup.sh
+    image: wangsen992/mpich33_openfoam9
+    container_name: openfoam9_layering
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - TZ=Etc/UTC
+      - CONTAINER=openfoam9
+    volumes:
+      - /mnt/d:/mnt/d
+    restart: unless-stopped
+    command: sudo tail -F /var/log/*

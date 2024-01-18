@@ -1,0 +1,27 @@
+---
+version: "3.6"
+services:
+  test:
+    build:
+      context: /mnt/d/docker-repos/
+      dockerfile: OS/ubuntu/Dockerfile-Test # where setup files are installed.
+      args:
+        - BASE=ubuntu:devel
+        - DI_RESOURCES=Resources
+        - IMAGE_RESOURCES=/app/Resources
+        - USER=swang18
+        - INSTALL_APP_SCRIPT=install_scripts/install_paraview.sh
+    image: wangsen992/ubuntu_dev
+    container_name: test
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - TZ=Etc/UTC
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CONTAINER=test
+    volumes:
+      - /mnt/d:/mnt/d
+    ports:
+      - 11114:11114
+    restart: "no"
+    command: sudo tail -F /var/log/*

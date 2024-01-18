@@ -1,0 +1,28 @@
+---
+version: "3.6"
+services:
+  crocus_dev:
+    build:
+      context: /mnt/d/docker-repos/
+      dockerfile: OS/ubuntu/Dockerfile
+      # Base: 
+      #   Using ubuntu:devel causes cmake to create error 
+      #   Using ubuntu:20.04 causes mpich33 compile error
+      args:
+        - BASE=ubuntu:22.04 # Using devel causes cmake to create error
+        - DI_RESOURCES=Resources
+        - IMAGE_RESOURCES=/app/Resources
+        - USER=swang18
+        - INSTALL_APP_SCRIPT=/setup_scripts/crocusDev-setup.sh
+    image: wangsen992/crocus_dev
+    container_name: crocus_dev
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - TZ=Etc/UTC
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CONTAINER=crocus_dev
+    volumes:
+      - /mnt/d:/mnt/d
+    restart: "no"
+    command: sudo tail -F /var/log/*

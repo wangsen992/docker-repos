@@ -1,0 +1,24 @@
+---
+version: "3.6"
+services:
+  openfoam9:
+    build:
+      context: /mnt/d/docker-repos/
+      dockerfile: OS/ubuntu/Dockerfile
+      args:
+        - BASE=ubuntu:devel
+        - DI_RESOURCES=Resources
+        - IMAGE_RESOURCES=/app/Resources
+        - USER=swang18
+        - INSTALL_APP_SCRIPT=setup_scripts/crocusDev-of9-setup.sh
+    image: wangsen992/crocus_openfoam9
+    container_name: crocus_openfoam9
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - TZ=Etc/UTC
+      - CONTAINER=openfoam9
+    volumes:
+      - /mnt/d:/mnt/d
+    restart: unless-stopped
+    command: sudo tail -F /var/log/*

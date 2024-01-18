@@ -1,0 +1,29 @@
+---
+version: "3.6"
+services:
+  jupyterlab:
+    build:
+      context: /mnt/d/docker-repos/
+      dockerfile: OS/ubuntu/Dockerfile
+      args:
+        - BASE=ubuntu:22.04 # Using devel causes cmake to create error
+        - DI_RESOURCES=Resources
+        - IMAGE_RESOURCES=/app/Resources
+        - USER=wangsen992
+        - INSTALL_APP_SCRIPT=install_scripts/install_jupyter.sh
+    image: wangsen992/mpich33_cuda_jupyterlab
+    container_name: jupyterlab
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - TZ=Etc/UTC
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CONTAINER=jupyterlab
+    runtime: nvidia
+    volumes:
+      - /mnt/d/docker-repos/Apps/mpich33_jupyterlab/work:/work
+      - /mnt/d:/mnt/d
+    ports:
+      - 8888:8888
+    restart: unless-stopped
+    command: /bin/bash -c "cd /mnt && . /home/${USER}/.bashrc && jupyter-lab --ip=0.0.0.0"
