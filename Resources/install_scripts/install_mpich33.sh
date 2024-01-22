@@ -2,7 +2,8 @@
 
 # Install MPICH according to ALCF requirement
 MPICH_DIR=/mpich
-mkdir ${MPICH_DIR} && cd ${MPICH_DIR}
+sudo mkdir ${MPICH_DIR} && cd ${MPICH_DIR}
+sudo chmod -R 777 /app /mpich
 
 # Source is available at http://www.mpich.org/static/downloads/
 # See installation guide of target MPICH version
@@ -19,5 +20,5 @@ wget http://www.mpich.org/static/downloads/${MPICH_VERSION}/mpich-${MPICH_VERSIO
       && tar xfz mpich-${MPICH_VERSION}.tar.gz  --strip-components=1 \
 			&&  ./configure ${MPICH_CONFIGURE_OPTIONS} \
       && make install ${MPICH_MAKE_OPTIONS}
-echo 'export PATH=$PATH:/mpich/install/bin' >> /etc/profile
-echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mpich/install/lib' >> /etc/profile
+echo 'export PATH=$PATH:/mpich/install/bin' >> /home/${USER}/.bashrc
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mpich/install/lib' >> /home/${USER}/.bashrc

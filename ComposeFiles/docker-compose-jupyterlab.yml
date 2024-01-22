@@ -3,7 +3,7 @@ version: "3.6"
 services:
   jupyterlab:
     build:
-      context: /mnt/d/docker-repos/
+      context: ${CONTEXT}
       dockerfile: OS/ubuntu/Dockerfile
       args:
         - BASE=ubuntu:22.04 # Using devel causes cmake to create error
@@ -21,8 +21,7 @@ services:
       - CONTAINER=jupyterlab
     runtime: nvidia
     volumes:
-      - /mnt/d/docker-repos/Apps/mpich33_jupyterlab/work:/work
-      - /mnt/d:/mnt/d
+      - ${WORKSPACE_DIR}:/mnt/d
     ports:
       - 8888:8888
     restart: unless-stopped

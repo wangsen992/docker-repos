@@ -10,7 +10,7 @@ sudo apt-get install -y flex libfl-dev bison zlib1g-dev libboost-system-dev libb
 
 cd /app
 git clone https://github.com/OpenFOAM/ThirdParty-9.git
-git clone -b master-test https://github.com/wangsen992/OpenFOAM-9.git
+git clone -b ${BRANCH} https://github.com/wangsen992/OpenFOAM-9.git
 
 # pull from the latest official OF9
 cd /app/OpenFOAM-9

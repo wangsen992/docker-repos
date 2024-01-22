@@ -1,9 +1,9 @@
 ---
 version: "3.6"
 services:
-  crocus_dev:
+  app:
     build:
-      context: /mnt/d/docker-repos/
+      context: ${CONTEXT}
       dockerfile: OS/ubuntu/Dockerfile
       # Base: 
       #   Using ubuntu:devel causes cmake to create error 
@@ -12,17 +12,19 @@ services:
         - BASE=ubuntu:22.04 # Using devel causes cmake to create error
         - DI_RESOURCES=Resources
         - IMAGE_RESOURCES=/app/Resources
-        - USER=swang18
-        - INSTALL_APP_SCRIPT=/setup_scripts/crocusDev-setup.sh
-    image: wangsen992/crocus_dev
-    container_name: crocus_dev
+        - USER=${APP_USER}
+        - BRANCH=${OF9_BRANCH}
+        - INSTALL_APP_SCRIPT=/setup_scripts/app-setup.sh
+        - INSTALL_ENV_SCRIPT=/setup_scripts/env-setup.sh
+    image: ${DOCKER_USER}/${IMAGE_NAME}
+    container_name: ${CONTAINER_NAME}
     security_opt:
       - seccomp:unconfined #optional
     environment:
       - TZ=Etc/UTC
       - NVIDIA_VISIBLE_DEVICES=all
-      - CONTAINER=crocus_dev
+      - CONTAINER=${CONTAINER_NAME}
     volumes:
-      - /mnt/d:/mnt/d
+      - $WORKSPACE_DIR:/mnt/d
     restart: "no"
     command: sudo tail -F /var/log/*

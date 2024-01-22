@@ -1,24 +1,30 @@
 ---
 version: "3.6"
 services:
-  openfoam9:
+  openfoam9_dev:
     build:
-      context: /mnt/d/docker-repos/
+      context: ${CONTEXT}
       dockerfile: OS/ubuntu/Dockerfile
+      # Base: 
+      #   Using ubuntu:devel causes cmake to create error 
+      #   Using ubuntu:20.04 causes mpich33 compile error
       args:
-        - BASE=ubuntu:devel
+        - BASE=ubuntu:22.04 # Using devel causes cmake to create error
         - DI_RESOURCES=Resources
         - IMAGE_RESOURCES=/app/Resources
-        - USER=wangsen992
-        - INSTALL_APP_SCRIPT=install_openfoam9.sh
-    image: wangsen992/mpich33_openfoam9
-    container_name: openfoam9
+        - USER=${USER}
+        - BRANCH=${OF9_BRANCH}
+        - INSTALL_APP_SCRIPT=/setup_scripts/crocusDev-of9-setup.sh
+        - INSTALL_ENV_SCRIPT=/setup_scripts/env-setup.sh
+    image: wangsen992/openfoam9_dev
+    container_name: openfoam9_dev
     security_opt:
       - seccomp:unconfined #optional
     environment:
       - TZ=Etc/UTC
-      - CONTAINER=openfoam9
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CONTAINER=openfoam9_dev
     volumes:
-      - /mnt/d:/mnt/d
-    restart: unless-stopped
+      - $WORKSPACE_DIR:/mnt/d
+    restart: "no"
     command: sudo tail -F /var/log/*

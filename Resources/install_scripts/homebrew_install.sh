@@ -1110,4 +1110,3 @@ echo 'export CMAKE_PREFIX_PATH=/home/linuxbrew/.linuxbrew' >> /home/${USER}/.bas
 echo 'echo Coming from  bashrc'  >> /home/${USER}/.bashrc
 
 sudo chmod -R 777 /home/linuxbrew
-sudo chmod -R 777 /home/${USER}
