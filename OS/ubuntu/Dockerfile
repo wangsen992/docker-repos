@@ -27,9 +27,9 @@ WORKDIR /home/${USER}
 USER ${USER}
 
 # Installation of package managers at USER STAGE
-RUN bash -c " if [ ! -z {INSTALL_ENV_SCRIPT} ]; then bash ${IMAGE_RESOURCES}/${INSTALL_ENV_SCRIPT}; fi "
+RUN bash -c " if [ ! -z {INSTALL_ENV_SCRIPT} ]; then bash ${INSTALL_ENV_SCRIPT}; fi "
 
 # Installation of Applications
 # Note "INSTALL_SCRIPT" is taken by mpich so have to use INSTALL_APP_SCRIPT
-RUN bash -c " if [ ! -z ${INSTALL_APP_SCRIPT} ]; then bash ${IMAGE_RESOURCES}/${INSTALL_APP_SCRIPT}; fi "
+RUN bash -c " if [ ! -z ${INSTALL_APP_SCRIPT} ]; then bash ${INSTALL_APP_SCRIPT}; fi "
 			

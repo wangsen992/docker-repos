@@ -1,1 +1,0 @@
-cuda-command-line-tools-12-0 cuda-cudart-dev-12-0 cuda-nvcc-12-0 cuda-cupti-12-0 cuda-nvprune-12-0 cuda-libraries-12-0 cuda-nvrtc-12-0 libcufft-12-0 libcurand-12-0 libcusolver-12-0 libcusparse-12-0 libcublas-12-0 libcudnn8=8.6.0.163-1+cuda11.8 libnvinfer-plugin8=8.6.1.6-1+cuda11.8 libnvinfer8=8.6.1.6-1+cuda11.8 build-essential pkg-config curl software-properties-common unzip

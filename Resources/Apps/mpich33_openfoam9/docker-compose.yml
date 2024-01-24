@@ -15,7 +15,7 @@ services:
         - USER=${APP_USER}
         - BRANCH=${OF9_BRANCH}
         - INSTALL_ENV_SCRIPT=/app/Resources/setup_scripts/env-setup.sh
-        - INSTALL_APP_SCRIPT=/app/Resources/setup_scripts/app-setup.sh
+        - INSTALL_APP_SCRIPT=/app/Resources/Apps/mpich33_openfoam9/app-setup.sh
     image: ${DOCKER_USER}/${IMAGE_NAME}
     container_name: ${CONTAINER_NAME}
     security_opt:
