@@ -13,8 +13,11 @@ services:
       - SUBFOLDER=/ #optional
       - NVIDIA_VISIBLE_DEVICES=0
     runtime: nvidia
+    devices:
+      - "/dev/dri:/dev/dri"
     volumes:
       - /mnt/d/docker/tests/blender/config:/config
+      - /mnt/d:/mnt/d
     ports:
       - 3000:3000
       - 3001:3001
