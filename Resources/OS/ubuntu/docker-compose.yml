@@ -1,0 +1,31 @@
+---
+version: "3.6"
+services:
+  os:
+    build:
+      context: ${CONTEXT}
+      dockerfile: Resources/OS/ubuntu/Dockerfile
+      # Base: 
+      #   Using ubuntu:devel causes cmake to create error 
+      #   Using ubuntu:20.04 causes mpich33 compile error
+      args:
+        - BASE=ubuntu:22.04 # Using devel causes cmake to create error
+        - DI_RESOURCES=Resources
+        - IMAGE_RESOURCES=/app/Resources
+        - USER=${APP_USER}
+        - INSTALL_ENV_SCRIPT=/app/Resources/setup_scripts/env-setup.sh
+        - INSTALL_APP_SCRIPT=    
+    image: ${DOCKER_USER}/${IMAGE_NAME}
+    container_name: ${CONTAINER_NAME}
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - TZ=Etc/UTC
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CONTAINER=${CONTAINER_NAME}
+    volumes:
+      - $WORKSPACE_DIR:/mnt/d
+    ports:
+      - 8493:8493
+    restart: "no"
+    command: sudo tail -F /var/log/*

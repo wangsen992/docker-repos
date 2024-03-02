@@ -7,4 +7,3 @@ echo PATH=$PATH
 
 # enable different line to install required library
 /bin/bash /app/Resources/install_scripts/install_openfoam9.sh
-
