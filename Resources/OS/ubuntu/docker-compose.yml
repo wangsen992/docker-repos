@@ -1,3 +1,4 @@
+# VNC is provisioned
 ---
 version: "3.6"
 services:
@@ -26,6 +27,8 @@ services:
     volumes:
       - $WORKSPACE_DIR:/mnt/d
     ports:
-      - 8493:8493
+      - ${HOST_PORT}:${CONTAINER_PORT}
+    devices:
+      - "/dev/dri:/dev/dri"
     restart: "no"
-    command: sudo tail -F /var/log/*
+    command: bash -c "sudo passwd -p swang18 swang18; vncserver -select-de XFCE; sudo tail -F /var/log/syslog"

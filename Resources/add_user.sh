@@ -2,7 +2,7 @@
 
 export USER=$1
 export USER_HOME=/home/${USER}
-useradd --user-group --create-home --shell /bin/bash $USER ;\
+useradd --user-group --create-home --shell /bin/bash $USER -p $USER;\
 echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 usermod -a -G root $USER
 usermod -a -G sudo $USER

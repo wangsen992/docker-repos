@@ -12,6 +12,7 @@ sudo chmod 777 -R /etc/ssl
 
 # install usable terminal for xfce4
 sudo apt-get install -y xfce4 xfce4-terminal
+vncserver -select-de xfce
 
 # install firefox
 # https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions

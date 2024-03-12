@@ -1,1 +1,0 @@
-{Mesa/X.org/llvmpipe (LLVM 15.0.6, 256 bits)/4.5 (Core Profile) Mesa 22.2.5}=SUPPORTED
