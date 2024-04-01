@@ -3,3 +3,4 @@
 export DI_ROOT=/mnt/d/docker-repos
 export DI_RESOURCES=${DI_ROOT}/Resources
 export DI_PATH=${DI_ROOT}/bin
+export DI_OS=${DI_RESOURCES}/OS
