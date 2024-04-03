@@ -6,4 +6,5 @@ sudo apt-get install -y \
 				python3 python3-distutils python3-pip gcc \
 				cmake cmake-curses-gui \
 				git curl gawk
+sudo apt-get install -y ninja-build gettext unzip build-essential
 
