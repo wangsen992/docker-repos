@@ -6,6 +6,7 @@ useradd --user-group --create-home --shell /bin/bash $USER -p $USER;\
 echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 usermod -a -G root $USER
 usermod -a -G sudo $USER
+echo ${USER}:${USER} | chpasswd
 
 sed -i '4 i source /etc/profile' /home/${USER}/.bashrc
 
