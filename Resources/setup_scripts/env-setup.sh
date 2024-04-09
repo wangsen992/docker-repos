@@ -13,3 +13,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib32:/usr/lib64:/usr/loca
 
 # To provide access priviledge on ALCF
 sudo chmod -R 777 /home/${USER}
+
+# Put envs to bashrc
+echo "export USER=${USER}" >> /home/${USER}/.bashrc
+echo "export IMAGE_RESOURCES=${IMAGE_RESOURCES}" >> /home/${USER}/.bashrc
